@@ -9,6 +9,8 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(new TestFrameLayout(getApplicationContext()));
+//        setContentView(new TestFrameLayout(getApplicationContext()));
+
+        setContentView(new GLTest(getApplicationContext()));
     }
 }
