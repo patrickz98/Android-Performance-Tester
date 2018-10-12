@@ -13,7 +13,7 @@ public class GLTest extends GLSurfaceView
 
     private void init()
     {
-        GLRenderer renderer = new GLRenderer(getContext());
+        GLRenderer renderer = new GLRenderer();
         setRenderer(renderer);
     }
 }

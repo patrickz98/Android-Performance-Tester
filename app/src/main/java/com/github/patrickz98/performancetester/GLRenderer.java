@@ -1,6 +1,5 @@
 package com.github.patrickz98.performancetester;
 
-import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLU;
 
@@ -9,14 +8,16 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class GLRenderer implements GLSurfaceView.Renderer
 {
-    private GLTriangle triangle;
-    private Context context;   // Application's context
+    private GLDrawer drawer;
+
+    // Rotational angle and speed
+    private float angle = 0.0f;
+    private float speed = 0.5f;
 
     // Constructor with global application context
-    public GLRenderer(Context context)
+    GLRenderer()
     {
-        this.context = context;
-        triangle = new GLTriangle();
+        drawer = new GLDrawer();
     }
 
     // Call back when the surface is first created or re-created
@@ -40,6 +41,7 @@ public class GLRenderer implements GLSurfaceView.Renderer
     public void onSurfaceChanged(GL10 gl, int width, int height)
     {
         if (height == 0) height = 1;   // To prevent divide by zero
+
         float aspect = (float) width / height;
 
         // Set the viewport (display area) to cover the entire window
@@ -48,6 +50,7 @@ public class GLRenderer implements GLSurfaceView.Renderer
         // Setup perspective projection, with aspect ratio matches viewport
         gl.glMatrixMode(GL10.GL_PROJECTION); // Select projection matrix
         gl.glLoadIdentity();                 // Reset projection matrix
+
         // Use perspective projection
         GLU.gluPerspective(gl, 45, aspect, 0.1f, 100.f);
 
@@ -64,12 +67,12 @@ public class GLRenderer implements GLSurfaceView.Renderer
     {
         // Clear color and depth buffers using clear-value set earlier
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+        gl.glLoadIdentity(); // Reset model-view matrix
+        gl.glTranslatef(1.5f, 0.0f, -6.0f);  // Translate right and into the screen (NEW)
+        gl.glRotatef(angle, 0.0f, 1.0f, 0.0f); // Rotate the drawer about the y-axis
 
-        // You OpenGL|ES rendering code here
-        // ......
+        drawer.draw(gl); // Draw drawer
 
-        gl.glLoadIdentity();                 // Reset model-view matrix ( NEW )
-        gl.glTranslatef(-1.5f, 0.0f, -6.0f); // Translate left and into the screen ( NEW )
-        triangle.draw(gl);                   // Draw triangle ( NEW )
+        angle += speed;
     }
 }
