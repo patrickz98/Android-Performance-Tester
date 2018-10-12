@@ -14,9 +14,9 @@ public class GLDrawer
             1.0f, 0.0f, 0.0f,
             0.0f, 1.0f, 0.0f,
             1.0f, 1.0f, 0.0f,
-//            1.0f, 1.0f, 1.0f,
-//            0.0f, 0.0f, 1.0f,
-//            0.0f, 0.0f, 0.0f
+            1.0f, 1.0f, 1.0f,
+            0.0f, 1.0f, 1.0f,
+            1.0f, 0.0f, 1.0f,
     };
 
     private float[] colors = {

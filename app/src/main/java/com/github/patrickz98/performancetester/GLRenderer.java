@@ -12,7 +12,7 @@ public class GLRenderer implements GLSurfaceView.Renderer
 
     // Rotational angle and speed
     private float angle = 0.0f;
-    private float speed = 0.5f;
+    private float speed = 0.75f;
 
     // Constructor with global application context
     GLRenderer()
@@ -69,7 +69,7 @@ public class GLRenderer implements GLSurfaceView.Renderer
         gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
         gl.glLoadIdentity(); // Reset model-view matrix
         gl.glTranslatef(1.5f, 0.0f, -6.0f);  // Translate right and into the screen (NEW)
-        gl.glRotatef(angle, 0.0f, 1.0f, 0.0f); // Rotate the drawer about the y-axis
+        gl.glRotatef(angle, 0.3f, 1.0f, 0.0f); // Rotate the drawer about the y-axis
 
         drawer.draw(gl); // Draw drawer
 
